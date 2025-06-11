@@ -1,0 +1,10 @@
+model GeneralDivisi {
+  id             Int              @id @default(autoincrement())
+  nama           String
+  kode           String?
+  created_at     DateTime?        @default(now())
+  updated_at     DateTime?        @updatedAt
+  GeneralProject GeneralProject[]
+
+  @@map("general_divisi")
+}

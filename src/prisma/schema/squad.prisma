@@ -1,0 +1,12 @@
+model Squad {
+    id                 Int       @id @default(autoincrement())
+    Name               String    @db.VarChar(255)
+    general_project_id Int
+    anggota            Json?
+    created_at         DateTime? @default(now())
+    updated_at         DateTime? @updatedAt
+
+    projects GeneralProject @relation(fields: [general_project_id], references: [id])
+
+    @@map("squads")
+}

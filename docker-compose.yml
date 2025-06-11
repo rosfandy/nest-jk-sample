@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  nestjs-app:
+    build: .
+    ports:
+      - "3000:${PORT}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DATABASE_URL=${DATABASE_CONNECTION}://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    restart: unless-stopped

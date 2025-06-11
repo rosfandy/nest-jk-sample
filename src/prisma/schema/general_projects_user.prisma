@@ -1,0 +1,12 @@
+model GeneralProjectsUser {
+  id                 Int       @id @default(autoincrement())
+  general_project_id Int
+  user_id            Int
+  created_at         DateTime? @default(now())
+  updated_at         DateTime? @updatedAt
+
+  project GeneralProject @relation(fields: [general_project_id], references: [id])
+  user    User           @relation(fields: [user_id], references: [id])
+
+  @@map("general_project_user")
+}

@@ -1,0 +1,18 @@
+model GeneralProject {
+    id              Int       @id @default(autoincrement())
+    nama            String    @db.VarChar(255)
+    deskripsi       String
+    tanggal_mulai   DateTime  @db.Date
+    tanggal_selesai DateTime  @db.Date
+    user_id         Int
+    created_at      DateTime? @default(now())
+    updated_at      DateTime? @updatedAt
+    divisi_id       Int?
+
+    squads Squad[]
+    divisi GeneralDivisi?        @relation(fields: [divisi_id], references: [id])
+    team   GeneralProjectsUser[]
+
+    // 
+    @@map("general_projects")
+}
